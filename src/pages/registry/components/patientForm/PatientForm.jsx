@@ -6,6 +6,7 @@ import PatientAddress from "./components/PatientAddress";
 import PatientFinance from "./components/PatientFinance";
 import { usePatientsStore } from "../../../../store/patientsStore";
 import { useAmbulRecordsStore } from "../../../../store/ambulRecords";
+
 const PatientForm = () => {
   const patientsStore = usePatientsStore();
   const ambulStore = useAmbulRecordsStore();
@@ -33,6 +34,7 @@ const PatientForm = () => {
     setFormData({});
     patientsStore.clearPatientInfo();
   };
+
   return (
     <form
       onSubmit={async (e) => {
