@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Light"; /*Can be any text*/
+  src: local("extrasquare_mtavruli_2009"),
+    url("./fonts/extrasquare_mtavruli_2009.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Glaho"; /*Can be any text*/
+  src: local("bpg_glaho_sylfaen"),
+    url("./fonts/bpg_arial_2009.ttf") format("truetype");
+}
+body {
+  font-family: "Glaho";
+  margin: 0;
+  padding: 0;
+}
+
+p > img,
+span > img {
+  display: inline;
+  vertical-align: 0;
+  padding: 0;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.color_blue {
+  @apply bg-[#2C4C9C];
+}
+.color_orange {
+  @apply bg-[#E99344];
+}
+
+.pending {
+  @apply text-sky-600;
+}
+.active {
+  @apply text-sky-600 lg:border-b-4 pb-1 border-sky-600;
+}
+.line-break {
+  white-space: pre-wrap;
+}
