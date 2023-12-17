@@ -8,14 +8,12 @@ import ka from "date-fns/locale/ka"; // Georgian locale from date-fns
 // Register Georgian locale
 registerLocale("ka", ka);
 
-const CustomDatePicker = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
+const CustomDatePicker = ({ selected, onChange }) => {
   return (
     <div className="w-full text-black">
       <DatePicker
-        selected={selectedDate}
-        onChange={(date) => setSelectedDate(date)}
+        selected={selected}
+        onChange={onChange}
         dateFormat="dd.MM.yyyy"
         locale="ka" // Set the locale to Georgian
         placeholderText="თარიღი"

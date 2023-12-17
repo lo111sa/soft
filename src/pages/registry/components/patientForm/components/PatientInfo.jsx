@@ -91,14 +91,15 @@ const PatientInfo = ({ onInfoChange }) => {
           </div>
           <div className="flex flex-col w-1/2 ">
             <span>დაბადების თარიღი</span>
-            {/*  <DatePicker
+            <DatePicker
               size="large"
               placeholder="აირჩიეთ თარიღი"
-              onChange={(date, datestring) =>
-                handleInputChange("birthDate", datestring)
-              }
-            /> */}
-            <CustomDatePicker />
+              onChange={(date, datestring) => {
+                handleInputChange("birthDate", datestring);
+                console.log(date, datestring);
+              }}
+            />
+            {/*  <CustomDatePicker /> */}
           </div>
         </div>
         {/* ... other input fields for personal information */}
