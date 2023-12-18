@@ -14,20 +14,20 @@ const AmbulTable = () => {
   // }, []);
 
   const tableHeader = (
-    <tr className="text-[15px]">
-      <th scope="col" className="px-6 py-3 border bg-gray-50 ">
+    <tr className="text-[15px] sticky top-0 bg-gray-100 z-10">
+      <th scope="col" className="px-6 py-3 border">
         N
       </th>
-      <th scope="col" className="px-6 py-3 border bg-gray-50 ">
+      <th scope="col" className="px-6 py-3 border">
         პირადი ნომერი
       </th>
-      <th scope="col" className="px-6 py-3 border bg-gray-50 ">
+      <th scope="col" className="px-6 py-3 border">
         პაციენტი
       </th>
-      <th scope="col" className="px-6 py-3 border bg-gray-50 ">
+      <th scope="col" className="px-6 py-3 border">
         ისტორიის ნომერი
       </th>
-      <th scope="col" className="px-6 py-3 border bg-gray-50 ">
+      <th scope="col" className="px-6 py-3 border">
         მოსვლის თარიღი
       </th>
     </tr>
