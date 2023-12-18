@@ -9,33 +9,43 @@ export const useAmbulRecordsStore = create((set) => ({
   isLoading: false,
 
   /////////////////////////// AMBUL RECORDS ///////////////////////////
-  //Add Ambul visits
   addVisit: async (obj) => {
     set({ isLoading: true });
-    const { data } = await axios.post(`/ambulRecords/add`, obj);
-    set((state) => ({
-      isLoading: false,
-    }));
+    try {
+      const { data } = await axios.post(`/ambulRecords/add`, obj);
+      // Handle data if needed
+    } finally {
+      set({ isLoading: false });
+    }
   },
 
-  //fetch Ambul visits
-  fetchVisits: async (query) => {
+  /*   fetchVisits: async (query) => {
     set({ visits: [], isLoading: true });
-    const { data } = await axios.get(`/ambulRecords?${query}`);
-    set({ visits: data, isLoading: false });
-  },
+    try {
+      const { data } = await axios.get(`/ambulRecords?${query}`);
+      set({ visits: data });
+    } finally {
+      set({ isLoading: false });
+    }
+  }, */
 
-  //Fetch Ambul visits
   fetchAmb: async (query) => {
     set({ isLoading: true, amb: [] });
-    const { data } = await axios.get(`/ambulRecords/getAmb?${query}`);
-    set({ amb: data, isLoading: false });
+    try {
+      const { data } = await axios.get(`/ambulRecords/getAmb?${query}`);
+      set({ amb: data.result });
+    } finally {
+      set({ isLoading: false });
+    }
   },
 
-  //Fetch Single patient visit records
   fetchSinglePatientInfo: async (query) => {
     set({ isLoading: true, singlePatientInfo: [] });
-    const { data } = await axios.get(`/ambulRecords/getAmb?${query}`);
-    set({ singlePatientInfo: data, isLoading: false });
+    try {
+      const { data } = await axios.get(`/ambulRecords/getAmb?${query}`);
+      set({ singlePatientInfo: data.result });
+    } finally {
+      set({ isLoading: false });
+    }
   },
 }));

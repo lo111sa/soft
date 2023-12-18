@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PatientInfo from "./components/PatientInfo";
 import PatientStatus from "./components/PatientStatus";
 import PatientContact from "./components/PatientContact";
@@ -6,6 +6,7 @@ import PatientAddress from "./components/PatientAddress";
 import PatientFinance from "./components/PatientFinance";
 import { usePatientsStore } from "../../../../store/patientsStore";
 import { useAmbulRecordsStore } from "../../../../store/ambulRecords";
+import { format } from "date-fns";
 
 const PatientForm = () => {
   const patientsStore = usePatientsStore();
@@ -24,7 +25,6 @@ const PatientForm = () => {
   const handleSubmit = async () => {
     // if patient not exists add patient and ambulvizit
     if (!patientsStore.patientInfo?.name) {
-      console.log("0");
       const res = await patientsStore.addPatient(formData);
       if (res.id) {
         await ambulStore.addVisit({
@@ -35,18 +35,28 @@ const PatientForm = () => {
       }
       //if patient exists add only ambul visit
     } else {
-      console.log("1");
       await ambulStore.addVisit({
         doctorId: formData.doctorId,
         patientId: patientsStore.patientInfo?.id,
         createdAt: patientsStore.patientInfo?.createdAt,
       });
     }
-    await ambulStore.fetchAmb();
+    // Get the current date
+    const currentDate = new Date();
+
+    // Format the date using date-fns
+    const formattedDate = format(currentDate, "yyyy-MM-dd");
+    await ambulStore.fetchAmb(
+      `startDate=${formattedDate}&endDate=${formattedDate}`
+    );
     setFormData({});
     patientsStore.clearPatientInfo();
   };
 
+  useEffect(() => {
+    setFormData({});
+    patientsStore.clearPatientInfo();
+  }, []);
   return (
     <form
       onSubmit={async (e) => {

@@ -6,6 +6,7 @@ import SearchInput from "../../../../../components/UI/SearchInput";
 import Select from "../../../../../components/UI/Select";
 import { usePatientsStore } from "../../../../../store/patientsStore";
 import CustomDatePicker from "../../../../../components/UI/CustomDatePicker";
+import { formatDate } from "../../../../../utils/functions";
 
 const PatientInfo = ({ onInfoChange }) => {
   const patientsStore = usePatientsStore();
@@ -35,7 +36,7 @@ const PatientInfo = ({ onInfoChange }) => {
         name: patientsStore.patientInfo?.name || "",
         gender: patientsStore.patientInfo?.gender || "",
         birthDate: patientsStore.patientInfo?.birthDate || null,
-        pn: patientsStore.patientInfo?.pn,
+        pn: patientsStore.patientInfo?.pn || "",
       });
     } else {
       setPatientInfo((prevPatientInfo) => ({
@@ -43,6 +44,7 @@ const PatientInfo = ({ onInfoChange }) => {
         name: "",
         gender: "",
         birthDate: null,
+        pn: "",
       }));
     }
   }, [patientsStore.patientInfo]);
@@ -80,25 +82,39 @@ const PatientInfo = ({ onInfoChange }) => {
         <div className="flex gap-2  w-full px-2">
           <div className="flex flex-col w-1/2">
             <span>სქესი</span>
-            <Select
-              defaultText="აირჩიეთ სქესი"
-              options={[
-                { value: "1", label: "მამრობითი" },
-                { value: "2", label: "მდედრობითი" },
-              ]}
-              onChange={(e) => handleInputChange("gender", e.target.value)}
-            />
+            {patientsStore.patientInfo?.name ? (
+              <Input
+                value={patientInfo.gender == 1 ? `მამრობითი` : `მდედრობითი`}
+                readOnly={patientsStore.patientInfo?.name}
+              />
+            ) : (
+              <Select
+                defaultText="აირჩიეთ სქესი"
+                options={[
+                  { value: 1, label: "მამრობითი" },
+                  { value: 2, label: "მდედრობითი" },
+                ]}
+                onChange={(e) => handleInputChange("gender", e.target.value)}
+              />
+            )}
           </div>
           <div className="flex flex-col w-1/2 ">
             <span>დაბადების თარიღი</span>
-            <DatePicker
-              size="large"
-              placeholder="აირჩიეთ თარიღი"
-              onChange={(date, datestring) => {
-                handleInputChange("birthDate", datestring);
-                console.log(date, datestring);
-              }}
-            />
+            {patientsStore.patientInfo?.name ? (
+              <Input
+                value={formatDate(patientInfo.birthDate)}
+                readOnly={patientsStore.patientInfo?.name}
+              />
+            ) : (
+              <DatePicker
+                size="large"
+                placeholder="აირჩიეთ თარიღი"
+                onChange={(date, datestring) => {
+                  handleInputChange("birthDate", datestring);
+                  console.log(date, datestring);
+                }}
+              />
+            )}
             {/*  <CustomDatePicker /> */}
           </div>
         </div>

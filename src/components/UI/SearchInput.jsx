@@ -18,7 +18,6 @@ const SearchInput = ({
     // Do something with the selected result
     onSelect(result);
     setOpen(false);
-    console.log(value);
   };
 
   useEffect(() => {

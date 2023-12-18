@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Input from "../../../components/UI/Input";
 import { formatDate } from "../../../utils/functions";
+import { format } from "date-fns";
 import { useAmbulRecordsStore } from "../../../store/ambulRecords";
 
 const tableHeader = (
@@ -33,7 +34,7 @@ const PatientVisitInfo = ({ info }) => {
   const visits = useAmbulRecordsStore();
 
   useEffect(() => {
-    visits.fetchSinglePatientInfo(`patientId=${info.patientId}`);
+    visits.fetchSinglePatientInfo(`patientId=${info.patientId}&all=1`);
   }, []);
 
   return (
