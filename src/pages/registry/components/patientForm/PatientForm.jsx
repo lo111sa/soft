@@ -22,15 +22,27 @@ const PatientForm = () => {
   };
 
   const handleSubmit = async () => {
-    const res = await patientsStore.addPatient(formData);
-    if (res.id) {
+    // if patient not exists add patient and ambulvizit
+    if (!patientsStore.patientInfo?.name) {
+      console.log("0");
+      const res = await patientsStore.addPatient(formData);
+      if (res.id) {
+        await ambulStore.addVisit({
+          doctorId: formData.doctorId,
+          patientId: res.id,
+          createdAt: res.createdAt,
+        });
+      }
+      //if patient exists add only ambul visit
+    } else {
+      console.log("1");
       await ambulStore.addVisit({
         doctorId: formData.doctorId,
-        patientId: res.id,
-        createdAt: res.createdAt,
+        patientId: patientsStore.patientInfo?.id,
+        createdAt: patientsStore.patientInfo?.createdAt,
       });
-      await ambulStore.fetchAmb();
     }
+    await ambulStore.fetchAmb();
     setFormData({});
     patientsStore.clearPatientInfo();
   };
@@ -52,7 +64,6 @@ const PatientForm = () => {
         </div>
         <div className="flex flex-col gap-2 w-1/2">
           <PatientStatus onVisitChange={handleChange} />
-
           <PatientFinance onFinanceChange={handleChange} />
         </div>
       </div>
