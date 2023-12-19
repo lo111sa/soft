@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDoctorsStore } from "../../../../../store/doctorsStore";
 import Select from "../../../../../components/UI/Select";
+import Switch from "../../../../../components/UI/Switch";
 
 const PatientStatus = ({ onVisitChange }) => {
+  const [toggle, setToggle] = useState(true);
   const [visitInfo, setvisitInfo] = useState({
     doctorId: null,
     createdBy: 1,
@@ -40,11 +42,13 @@ const PatientStatus = ({ onVisitChange }) => {
       setDoctors((prev) => [...prev, { value: item.id, label: item.name }]);
     });
   }, [doctorsStore.doctors]);
-
+  console.log(toggle);
   return (
     <div className="">
       <div className="flex flex-col gap-2 w-full px-2">
-        <p className="text-right text-2xl ">სტატუსი</p>
+        <div className="flex justify-end">
+          <Switch toggle={toggle} onToggle={() => setToggle(!toggle)} />
+        </div>
         <div className="flex gap-2">
           <div className="flex gap-2 pt-1 w-full ">
             <div className="flex flex-col w-1/2">
