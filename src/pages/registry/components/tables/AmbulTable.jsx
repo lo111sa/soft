@@ -14,7 +14,7 @@ const AmbulTable = () => {
   // }, []);
 
   const tableHeader = (
-    <tr className="text-[15px] sticky top-0 bg-gray-100 z-10">
+    <tr className="text-[15px] sticky top-[-0.2px] bg-gray-100 z-10 border border-gray-300">
       <th scope="col" className="px-6 py-3 border">
         N
       </th>
@@ -30,6 +30,9 @@ const AmbulTable = () => {
       <th scope="col" className="px-6 py-3 border">
         მოსვლის თარიღი
       </th>
+      <th scope="col" className="px-2 py-3 border w-3">
+        სტატუსი
+      </th>
     </tr>
   );
 
@@ -44,11 +47,7 @@ const AmbulTable = () => {
               return (
                 <tr
                   key={item.id}
-                  className={` ${
-                    item.status
-                      ? `bg-[#BDE4AA] text-gray-700`
-                      : `hover:bg-gray-100`
-                  }`}
+                  className={`hover:bg-gray-200 even:bg-gray-100 `}
                   onClick={() =>
                     modal.open(<PatientVisitInfo info={item} />, "რეგისტრაცია")
                   }
@@ -67,6 +66,15 @@ const AmbulTable = () => {
                   </td>
                   <td className="px-6 py-2  border border-gray-300 break-all whitespace-nowrap sticky left-0">
                     {formatDate(item.visitTime)}
+                  </td>
+                  <td className=" border border-gray-300 break-all whitespace-nowrap  text-center">
+                    <div className="flex justify-center items-center">
+                      <div
+                        className={`w-4 h-4 p-0 m-0 rounded-full ${
+                          item.status ? `bg-[#30c279]` : `bg-[#f1533e]`
+                        } self-center`}
+                      ></div>
+                    </div>
                   </td>
                 </tr>
               );

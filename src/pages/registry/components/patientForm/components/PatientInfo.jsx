@@ -59,7 +59,7 @@ const PatientInfo = ({ onInfoChange }) => {
           {/* PN */}
           <div className="flex flex-col w-full ">
             <SearchInput
-              label="პირადი ნომერი"
+              label="პირადი ნომერი *"
               placeHolder="შეიყვანეთ პირადი ნომერი"
               value={patientInfo.pn}
               onChange={(e) => handleInputChange("pn", e.target.value)}
@@ -71,7 +71,7 @@ const PatientInfo = ({ onInfoChange }) => {
             />
           </div>
           <Input
-            label="პაციენტის სახელი, გვარი"
+            label="პაციენტის სახელი, გვარი *"
             placeholder="შეიყვანეთ სახელი და გვარი"
             value={patientInfo.name}
             onChange={(e) => handleInputChange("name", e.target.value)}

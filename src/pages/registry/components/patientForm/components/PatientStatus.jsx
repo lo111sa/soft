@@ -4,7 +4,11 @@ import Select from "../../../../../components/UI/Select";
 import Switch from "../../../../../components/UI/Switch";
 
 const PatientStatus = ({ onVisitChange }) => {
+  const doctorsStore = useDoctorsStore();
+
   const [toggle, setToggle] = useState(true);
+  const [groups, setGroups] = useState([]);
+  const [doctors, setDoctors] = useState([]);
   const [visitInfo, setvisitInfo] = useState({
     doctorId: null,
     createdBy: 1,
@@ -20,10 +24,6 @@ const PatientStatus = ({ onVisitChange }) => {
   useEffect(() => {
     onVisitChange(visitInfo); // Notify the parent component about the change
   }, [visitInfo]);
-
-  const doctorsStore = useDoctorsStore();
-  const [groups, setGroups] = useState([]);
-  const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
     doctorsStore.fetchGroups();
@@ -42,12 +42,18 @@ const PatientStatus = ({ onVisitChange }) => {
       setDoctors((prev) => [...prev, { value: item.id, label: item.name }]);
     });
   }, [doctorsStore.doctors]);
-  console.log(toggle);
+
   return (
     <div className="">
       <div className="flex flex-col gap-2 w-full px-2">
-        <div className="flex justify-end">
+        <div className="flex justify-end items-center gap-3">
           <Switch toggle={toggle} onToggle={() => setToggle(!toggle)} />
+          <button
+            type="submit"
+            className="border hover:border-yellow-600 px-3 py-1 rounded"
+          >
+            შენახვა
+          </button>
         </div>
         <div className="flex gap-2">
           <div className="flex gap-2 pt-1 w-full ">
@@ -62,7 +68,7 @@ const PatientStatus = ({ onVisitChange }) => {
               />
             </div>
             <div className="flex flex-col w-1/2 ">
-              <span>ექიმი</span>
+              <span>ექიმი *</span>
               <Select
                 defaultText="აირჩიეთ ექიმი"
                 options={doctors}

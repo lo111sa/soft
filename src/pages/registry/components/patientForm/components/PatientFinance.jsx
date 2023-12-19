@@ -27,7 +27,7 @@ const PatientFinance = ({ onFinanceChange }) => {
         <p className="flex items-center gap-2 text-2xl">
           <PaymentOutlinedIcon /> ანაზღაურება
         </p>
-        <div className="flex flex-col p-0 m-0">
+        <div className="flex flex-col ">
           <span>სადაზღვევო კომპანია</span>
           <Select
             defaultText="აირჩიეთ კომპანია"
@@ -46,6 +46,7 @@ const PatientFinance = ({ onFinanceChange }) => {
             <Input
               label="ღირებულება"
               onChange={(e) => handleInputChange("expenses", e.target.value)}
+              placeholder={"შეიყვანეთ ღირებულება"}
             />
           </div>
 
@@ -56,6 +57,7 @@ const PatientFinance = ({ onFinanceChange }) => {
               onChange={(e) =>
                 handleInputChange("discountPercentage", e.target.value)
               }
+              placeholder={"%"}
             />
           </div>
         </div>
@@ -65,9 +67,9 @@ const PatientFinance = ({ onFinanceChange }) => {
             onChange={(e) =>
               handleInputChange("referringDoctor", e.target.value)
             }
+            placeholder={"შეიყვანეთ ექიმის სახელი და გვარი"}
           />
         </div>
-        <button type="submit">Click</button>
       </div>
     </div>
   );

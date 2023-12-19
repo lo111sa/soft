@@ -6,6 +6,8 @@ import { useModalStore } from "./store/modalStore";
 import ModalComponent from "./components/ModalComponent";
 
 import PatientForm from "./pages/registry/components/patientForm/PatientForm";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<SingleBlog />} /> */}
       </Routes>
+
+      <ToastContainer position="top-center" autoClose={1500} />
     </>
   );
 }

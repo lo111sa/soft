@@ -4,7 +4,7 @@ const Switch = ({ toggle, onToggle }) => {
   const toggleClass = " transform translate-x-40";
   return (
     <div
-      className={`relative w-[193px] ${
+      className={`relative h-8 w-[193px] ${
         toggle ? `bg-[#f8483e]` : `bg-[#1a8377]`
       } rounded-full p-1  cursor-pointer`}
       onClick={onToggle}

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axios from "../axios";
+import { toast } from "react-toastify";
 
 export const usePatientsStore = create((set) => ({
   patientInfo: {},
@@ -16,8 +17,12 @@ export const usePatientsStore = create((set) => ({
   searchPatients: async (pn) => {
     if (pn !== "") {
       set({ patients: [], isLoading: true });
-      const { data } = await axios.get(`/patients?pn=${pn}`);
-      set({ patients: data, isLoading: false });
+      try {
+        const { data } = await axios.get(`/patients?pn=${pn}`);
+        set({ patients: data.result, isLoading: false });
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       set({ patients: [], patientInfo: {} });
     }
@@ -31,9 +36,12 @@ export const usePatientsStore = create((set) => ({
   //Add New Patient
   addPatient: async (patientForm) => {
     set({ isLoading: true });
-    const { data } = await axios.post(`/patients/add`, patientForm);
-
-    set({ isLoading: false });
-    return data.result;
+    try {
+      const { data } = await axios.post(`/patients/add`, patientForm);
+      data?.status ? toast.success(data.message) : toast.error(data.message);
+      return data.result;
+    } finally {
+      set({ isLoading: false });
+    }
   },
 }));
