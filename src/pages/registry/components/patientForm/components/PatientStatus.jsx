@@ -44,7 +44,7 @@ const PatientStatus = ({ onVisitChange }) => {
   }, [doctorsStore.doctors]);
 
   return (
-    <div className="">
+    <>
       <div className="flex flex-col gap-2 w-full px-2">
         <div className="flex justify-end items-center gap-3">
           <Switch toggle={toggle} onToggle={() => setToggle(!toggle)} />
@@ -78,7 +78,7 @@ const PatientStatus = ({ onVisitChange }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

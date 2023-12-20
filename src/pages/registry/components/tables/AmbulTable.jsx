@@ -9,10 +9,6 @@ const AmbulTable = () => {
   const visits = useAmbulRecordsStore();
   const modal = useModalStore();
 
-  // useEffect(() => {
-  //   visits.fetchAmb(``);
-  // }, []);
-
   const tableHeader = (
     <tr className="text-[15px] sticky top-[-0.2px] bg-gray-100 z-10 border border-gray-300">
       <th scope="col" className="px-6 py-3 border">
@@ -36,7 +32,7 @@ const AmbulTable = () => {
     </tr>
   );
 
-  if (visits.isLoading) return <Loader />;
+  //if (visits.isLoading) return <Loader />;
 
   return (
     <table className="w-full text-sm text-left rtl:text-right text-black h-[50px] cursor-pointer">

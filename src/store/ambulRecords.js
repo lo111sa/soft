@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import axios from "../axios";
-import { formatDate } from "../utils/functions";
 import { toast } from "react-toastify";
 
 export const useAmbulRecordsStore = create((set) => ({
@@ -14,21 +13,12 @@ export const useAmbulRecordsStore = create((set) => ({
     set({ isLoading: true });
     try {
       const { data } = await axios.post(`/ambulRecords/add`, obj);
+      set((state) => ({ amb: [data.result, ...state.amb] }));
       data?.status ? toast.success(data.message) : toast.error(data.message);
     } finally {
       set({ isLoading: false });
     }
   },
-
-  /*   fetchVisits: async (query) => {
-    set({ visits: [], isLoading: true });
-    try {
-      const { data } = await axios.get(`/ambulRecords?${query}`);
-      set({ visits: data });
-    } finally {
-      set({ isLoading: false });
-    }
-  }, */
 
   fetchAmb: async (query) => {
     set({ isLoading: true, amb: [] });

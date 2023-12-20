@@ -22,7 +22,7 @@ const PatientFinance = ({ onFinanceChange }) => {
     onFinanceChange(financeInfo); // Notify the parent component about the change
   }, [financeInfo]);
   return (
-    <div className="">
+    <>
       <div className="flex flex-col gap-2 w-full px-2">
         <p className="flex items-center gap-2 text-2xl">
           <PaymentOutlinedIcon /> ანაზღაურება
@@ -71,7 +71,7 @@ const PatientFinance = ({ onFinanceChange }) => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

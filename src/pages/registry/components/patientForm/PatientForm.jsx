@@ -41,14 +41,7 @@ const PatientForm = () => {
         createdAt: patientsStore.patientInfo?.createdAt,
       });
     }
-    // Get the current date
-    const currentDate = new Date();
 
-    // Format the date using date-fns
-    const formattedDate = format(currentDate, "yyyy-MM-dd");
-    await ambulStore.fetchAmb(
-      `startDate=${formattedDate}&endDate=${formattedDate}`
-    );
     setFormData({});
     patientsStore.clearPatientInfo();
   };
