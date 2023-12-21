@@ -8,47 +8,9 @@ import { usePatientsStore } from "../../../../../store/patientsStore";
 import CustomDatePicker from "../../../../../components/UI/CustomDatePicker";
 import { formatDate } from "../../../../../utils/functions";
 
-const PatientInfo = ({ onInfoChange }) => {
+const PatientInfo = ({ register, errors, watch }) => {
   const patientsStore = usePatientsStore();
-
-  const [patientInfo, setPatientInfo] = useState({
-    name: "",
-    gender: "",
-    birthDate: null,
-    pn: "",
-    createdBy: 1,
-  });
-
-  const handleInputChange = (field, value) => {
-    setPatientInfo((prevInfo) => ({
-      ...prevInfo,
-      [field]: value,
-    }));
-  };
-
-  useEffect(() => {
-    onInfoChange(patientInfo); // Notify the parent component about the change
-  }, [patientInfo]);
-
-  useEffect(() => {
-    if (patientsStore.patientInfo?.name) {
-      setPatientInfo({
-        name: patientsStore.patientInfo?.name || "",
-        gender: patientsStore.patientInfo?.gender || "",
-        birthDate: patientsStore.patientInfo?.birthDate || null,
-        pn: patientsStore.patientInfo?.pn || "",
-      });
-    } else {
-      setPatientInfo((prevPatientInfo) => ({
-        ...prevPatientInfo,
-        name: "",
-        gender: "",
-        birthDate: null,
-        pn: "",
-      }));
-    }
-  }, [patientsStore.patientInfo]);
-
+  const patientExists = patientsStore.patientInfo?.name;
   return (
     <div className="">
       <div className="flex flex-col gap-2 w-full ">
@@ -61,31 +23,49 @@ const PatientInfo = ({ onInfoChange }) => {
             <SearchInput
               label="პირადი ნომერი *"
               placeHolder="შეიყვანეთ პირადი ნომერი"
-              value={patientInfo.pn}
-              onChange={(e) => handleInputChange("pn", e.target.value)}
-              action={() => patientsStore.searchPatients(patientInfo.pn)}
+              action={() => patientsStore.searchPatients(watch("pn"))}
               data={patientsStore.patients}
               onSelect={(patient) => {
                 patientsStore.setPatientInfo(patient);
               }}
+              name="pn"
+              register={register}
+              validation={{
+                required: "აუცილებელი ველი!",
+                minLength: {
+                  value: 11,
+                  message: "პირადი ნომერი არ უნდა იყოს 11 ციფრზე ნაკლები",
+                },
+                maxLength: {
+                  value: 11,
+                  message: "პირადი ნომერი არ უნდა აღემატებოდეს 11 ციფრს",
+                },
+              }}
+              watch={watch}
+              errors={errors}
             />
           </div>
           <Input
             label="პაციენტის სახელი, გვარი *"
             placeholder="შეიყვანეთ სახელი და გვარი"
-            value={patientInfo.name}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-            readOnly={patientsStore.patientInfo?.name}
+            readOnly={patientExists}
+            name="name"
+            register={register}
+            validation={{
+              required: "აუცილებელი ველი!",
+            }}
+            errors={errors}
           />
         </div>
         {/* Gender, Birth Date */}
         <div className="flex gap-2  w-full px-2">
           <div className="flex flex-col w-1/2">
             <span>სქესი</span>
-            {patientsStore.patientInfo?.name ? (
+            {patientExists ? (
               <Input
-                value={patientInfo.gender == 1 ? `მამრობითი` : `მდედრობითი`}
-                readOnly={patientsStore.patientInfo?.name}
+                readOnly={patientExists}
+                name="gender"
+                register={register}
               />
             ) : (
               <Select
@@ -94,23 +74,24 @@ const PatientInfo = ({ onInfoChange }) => {
                   { value: 1, label: "მამრობითი" },
                   { value: 2, label: "მდედრობითი" },
                 ]}
-                onChange={(e) => handleInputChange("gender", e.target.value)}
+                name="gender"
+                register={register}
               />
             )}
           </div>
           <div className="flex flex-col w-1/2 ">
             <span>დაბადების თარიღი</span>
-            {patientsStore.patientInfo?.name ? (
+            {patientExists ? (
               <Input
-                value={formatDate(patientInfo.birthDate)}
-                readOnly={patientsStore.patientInfo?.name}
+                readOnly={patientExists}
+                name="birthDate"
+                register={register}
               />
             ) : (
               <DatePicker
                 size="large"
                 placeholder="აირჩიეთ თარიღი"
                 onChange={(date, datestring) => {
-                  handleInputChange("birthDate", datestring);
                   console.log(date, datestring);
                 }}
               />

@@ -3,41 +3,9 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import Input from "../../../../../components/UI/Input";
 import { usePatientsStore } from "../../../../../store/patientsStore";
 
-const PatientContact = ({ onContactChange }) => {
+const PatientContact = ({ register }) => {
   const patientsStore = usePatientsStore();
-  const [patientContact, setPatientContact] = useState({
-    tel: "",
-    tel1: "",
-    email: "",
-  });
-
-  const handleInputChange = (field, value) => {
-    setPatientContact((prevContact) => ({
-      ...prevContact,
-      [field]: value,
-    }));
-  };
-
-  useEffect(() => {
-    onContactChange(patientContact); // Notify the parent component about the change
-  }, [patientContact]);
-
-  useEffect(() => {
-    if (patientsStore.patientInfo?.name) {
-      setPatientContact({
-        tel: patientsStore.patientInfo?.tel || "",
-        tel1: patientsStore.patientInfo?.tel1 || "",
-        email: patientsStore.patientInfo?.email || "",
-      });
-    } else {
-      setPatientContact((prevPatientInfo) => ({
-        ...prevPatientInfo,
-        tel: "",
-        tel1: "",
-        email: "",
-      }));
-    }
-  }, [patientsStore.patientInfo]);
+  const patientExists = patientsStore.patientInfo?.name;
 
   return (
     <div className="">
@@ -52,18 +20,18 @@ const PatientContact = ({ onContactChange }) => {
             <Input
               label="ტელეფონი"
               placeholder="შეიყვანეთ მობილური"
-              value={patientContact.tel}
-              onChange={(e) => handleInputChange("tel", e.target.value)}
-              readOnly={patientsStore.patientInfo?.name}
+              readOnly={patientExists}
+              name="tel"
+              register={register}
             />
           </div>
           <div className="flex flex-col w-1/2 ">
             <Input
               label="დამ. ტელეფონი"
               placeholder="შეიყვანეთ დამატებითი ტელეფონი"
-              value={patientContact.tel1}
-              onChange={(e) => handleInputChange("tel1", e.target.value)}
-              readOnly={patientsStore.patientInfo?.name}
+              readOnly={patientExists}
+              name="tel1"
+              register={register}
             />
           </div>
         </div>
@@ -72,9 +40,9 @@ const PatientContact = ({ onContactChange }) => {
           <Input
             label="მეილი"
             placeholder="შეიყვანეთ მეილი"
-            value={patientContact.email}
-            onChange={(e) => handleInputChange("email", e.target.value)}
-            readOnly={patientsStore.patientInfo?.name}
+            readOnly={patientExists}
+            name="email"
+            register={register}
           />
         </div>
       </div>

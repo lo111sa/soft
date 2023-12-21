@@ -3,27 +3,12 @@ import { useDoctorsStore } from "../../../../../store/doctorsStore";
 import Select from "../../../../../components/UI/Select";
 import Switch from "../../../../../components/UI/Switch";
 
-const PatientStatus = ({ onVisitChange }) => {
+const PatientStatus = ({ register, errors }) => {
   const doctorsStore = useDoctorsStore();
 
   const [toggle, setToggle] = useState(true);
   const [groups, setGroups] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  const [visitInfo, setvisitInfo] = useState({
-    doctorId: null,
-    createdBy: 1,
-  });
-
-  const handleInputChange = (field, value) => {
-    setvisitInfo((prevInfo) => ({
-      ...prevInfo,
-      [field]: value,
-    }));
-  };
-
-  useEffect(() => {
-    onVisitChange(visitInfo); // Notify the parent component about the change
-  }, [visitInfo]);
 
   useEffect(() => {
     doctorsStore.fetchGroups();
@@ -72,7 +57,10 @@ const PatientStatus = ({ onVisitChange }) => {
               <Select
                 defaultText="აირჩიეთ ექიმი"
                 options={doctors}
-                onChange={(e) => handleInputChange("doctorId", e.target.value)}
+                name="doctorId"
+                register={register}
+                validation={{ required: "აუცილებელი ველი!" }}
+                errors={errors}
               />
             </div>
           </div>

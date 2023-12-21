@@ -11,7 +11,7 @@ const PatientFinance = ({ onFinanceChange }) => {
     referringDoctor: "",
   });
 
-  const handleInputChange = (field, value) => {
+  /*   const handleInputChange = (field, value) => {
     setFinanceInfo((prevInfo) => ({
       ...prevInfo,
       [field]: value,
@@ -20,7 +20,7 @@ const PatientFinance = ({ onFinanceChange }) => {
 
   useEffect(() => {
     onFinanceChange(financeInfo); // Notify the parent component about the change
-  }, [financeInfo]);
+  }, [financeInfo]); */
   return (
     <>
       <div className="flex flex-col gap-2 w-full px-2">
