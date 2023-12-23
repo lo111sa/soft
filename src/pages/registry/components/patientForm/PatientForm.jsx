@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PatientInfo from "./components/PatientInfo";
 import PatientStatus from "./components/PatientStatus";
-import PatientContact from "./components/PatientContact";
-import PatientAddress from "./components/PatientAddress";
-import PatientFinance from "./components/PatientFinance";
 import { usePatientsStore } from "../../../../store/patientsStore";
 import { useAmbulRecordsStore } from "../../../../store/ambulRecords";
 import { format } from "date-fns";
@@ -20,11 +17,11 @@ const PatientForm = () => {
     watch,
     setValue,
     formState: { errors },
-  } = useForm({});
+  } = useForm({ defaultValues: { createdBy: 1 } });
 
-  /*  const handleSubmit = async () => {
+  const onSubmit = async (formData) => {
     // if patient not exists add patient and ambulvizit
-    if (!patientsStore.patientInfo?.name) {
+    if (!patientExists) {
       const res = await patientsStore.addPatient(formData);
       if (res.id) {
         await ambulStore.addVisit({
@@ -42,9 +39,8 @@ const PatientForm = () => {
       });
     }
 
-    setFormData({});
     patientsStore.clearPatientInfo();
-  }; */
+  };
 
   useEffect(() => {
     patientsStore.clearPatientInfo();
@@ -77,26 +73,20 @@ const PatientForm = () => {
     setValue("referringDoctor", patientsStore.patientInfo.referringDoctor);
   }, [patientsStore.patientInfo?.name]);
 
-  const onSubmit = (data) => {
-    // Handle form submission here with the form data
-    console.log(data);
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-      {/* ... other form elements */}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      autoComplete="off"
+      className="flex flex-col"
+    >
       <div className="flex gap-2 w-full">
         <div className="flex flex-col gap-2 w-1/2">
           <PatientInfo register={register} errors={errors} watch={watch} />
-          <PatientContact register={register} errors={errors} />
-          <PatientAddress register={register} errors={errors} />
         </div>
         <div className="flex flex-col gap-2 w-1/2">
           <PatientStatus register={register} errors={errors} />
-          <PatientFinance register={register} errors={errors} />
         </div>
       </div>
-      {/* ... other form elements */}
     </form>
   );
 };
