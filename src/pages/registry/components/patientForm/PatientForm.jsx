@@ -16,11 +16,12 @@ const PatientForm = () => {
     handleSubmit,
     watch,
     setValue,
+    reset,
     formState: { errors },
   } = useForm({ defaultValues: { createdBy: 1 } });
 
   const onSubmit = async (formData) => {
-    // if patient not exists add patient and ambulvizit
+    // if patient not exists add patient and ambulvisit
     if (!patientExists) {
       const res = await patientsStore.addPatient(formData);
       if (res.id) {
@@ -38,7 +39,7 @@ const PatientForm = () => {
         createdAt: patientsStore.patientInfo?.createdAt,
       });
     }
-
+    reset();
     patientsStore.clearPatientInfo();
   };
 
