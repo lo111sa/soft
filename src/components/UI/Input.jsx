@@ -16,7 +16,7 @@ const Input = ({
 }) => {
   return (
     <div className="mb-1">
-      {label && <label className="block text-white mb-1">{label}</label>}
+      {label && <label className="block  mb-1">{label}</label>}
 
       {register ? (
         <div>

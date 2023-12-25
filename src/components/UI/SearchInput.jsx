@@ -47,7 +47,7 @@ const SearchInput = ({
 
   return (
     <div className="relative w-full">
-      {label && <label className="block text-white mb-1">{label}</label>}
+      {label && <label className="block mb-1">{label}</label>}
       <div className="relative flex items-center w-full">
         {register ? (
           <div className="relative w-full">
