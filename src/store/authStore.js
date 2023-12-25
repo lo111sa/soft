@@ -13,11 +13,22 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true });
     try {
       const { data } = await axios.post(`/auth/login`, obj);
-      set({ user: data.result });
-      console.log(data.result);
+      set({ user: data?.result });
       data?.status ? toast.success(data.message) : toast.error(data.message);
     } finally {
       set({ isLoading: false, isAuth: true });
+    }
+  },
+
+  //CHECK IF USER IS LOGGED IN
+  checkAuth: async () => {
+    set({ isLoading: true });
+    try {
+      const { data } = await axios.get(`/auth/check-auth`);
+      console.log(data);
+      set({ user: data?.result, isAuth: data.result?.authenticated });
+    } finally {
+      set({ isLoading: false });
     }
   },
 

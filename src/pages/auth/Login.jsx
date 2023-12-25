@@ -5,7 +5,6 @@ import { useAuthStore } from "../../store/authStore";
 const Login = () => {
   const auth = useAuthStore();
 
-  console.log(auth.user, auth.isAuth);
   return (
     <div>
       <button
@@ -17,6 +16,13 @@ const Login = () => {
 
       <button className="border" onClick={() => auth.logout()}>
         logout
+      </button>
+
+      <button
+        className="border"
+        onClick={() => console.log(auth.user, { auth: auth.isAuth })}
+      >
+        check
       </button>
     </div>
   );
