@@ -3,6 +3,7 @@ import Input from "../../../components/UI/Input";
 import { formatDate } from "../../../utils/functions";
 import { format } from "date-fns";
 import { useAmbulRecordsStore } from "../../../store/ambulRecords";
+import Loader from "../../../components/loader/Loader";
 
 const tableHeader = (
   <tr className="text-[15px]">
@@ -38,7 +39,7 @@ const PatientVisitInfo = ({ info }) => {
   }, []);
 
   return (
-    <div className="w-full bg-white text-gray-500 rounded-md py-3">
+    <div className="w-full bg-white text-gray-500 rounded-md py-3 ">
       {/* Patient info */}
       <div className="flex items-center justify-between p-2">
         <div className="flex items-center justify-center">
@@ -48,17 +49,17 @@ const PatientVisitInfo = ({ info }) => {
         <Input placeholder="ძებნა..." />
       </div>
       {/* TABLE */}
-      <div>
+      <div className="max-h-[calc(100vh-220px)] overflow-auto">
         {" "}
         <table className="w-full text-sm text-left rtl:text-right text-gray-900 h-full cursor-pointer ">
-          <thead className="text-xs text-gray-700 bg-gray-50">
+          <thead className="text-xs text-gray-700 bg-gray-50 sticky top-0 z-10">
             {tableHeader}
           </thead>
           <tbody>
             {visits.singlePatientInfo?.length
               ? visits.singlePatientInfo.map((item, index) => {
                   return (
-                    <tr key={item.id} className="hover:bg-gray-100">
+                    <tr key={item.id} className="hover:bg-gray-100 ">
                       <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
                         {index + 1}
                       </td>

@@ -15,8 +15,11 @@ export const useAuthStore = create((set) => ({
       const { data } = await axios.post(`/auth/login`, obj);
       set({ user: data?.result });
       data?.status ? toast.success(data.message) : toast.error(data.message);
+      set({ isAuth: true });
+    } catch (err) {
+      toast.error(err.response.data);
     } finally {
-      set({ isLoading: false, isAuth: true });
+      set({ isLoading: false });
     }
   },
 
@@ -25,7 +28,6 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true });
     try {
       const { data } = await axios.get(`/auth/check-auth`);
-      console.log(data);
       set({ user: data?.result, isAuth: data.result?.authenticated });
     } finally {
       set({ isLoading: false });

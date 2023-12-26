@@ -45,7 +45,10 @@ const AmbulTable = () => {
                   key={item.id}
                   className={`hover:bg-gray-200 even:bg-gray-100 `}
                   onClick={() =>
-                    modal.open(<PatientVisitInfo info={item} />, "რეგისტრაცია")
+                    modal.open(
+                      <PatientVisitInfo info={item} />,
+                      "პაციენტის ვიზიტების ისტორია"
+                    )
                   }
                 >
                   <td className="px-6 py-2  border border-gray-300 break-all whitespace-nowrap sticky left-0">
