@@ -5,10 +5,9 @@ import Select from "../../../../../components/UI/Select";
 import Input from "../../../../../components/UI/Input";
 import Switch from "../../../../../components/UI/Switch";
 
-const PatientStatus = ({ register, errors }) => {
+const PatientStatus = ({ register, errors, setValue }) => {
   const doctorsStore = useDoctorsStore();
 
-  const [toggle, setToggle] = useState(true);
   const [groups, setGroups] = useState([]);
   const [doctors, setDoctors] = useState([]);
 
@@ -33,7 +32,7 @@ const PatientStatus = ({ register, errors }) => {
   return (
     <div className="flex flex-col gap-2 w-full px-2">
       <div className="flex justify-end items-center gap-3">
-        <Switch toggle={toggle} onToggle={() => setToggle(!toggle)} />
+        <Switch onToggle={(value) => setValue("status", !value)} />
         <button
           type="submit"
           className="border hover:border-yellow-600 px-3 py-1 rounded"

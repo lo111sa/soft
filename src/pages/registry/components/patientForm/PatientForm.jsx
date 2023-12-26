@@ -22,6 +22,7 @@ const PatientForm = () => {
 
   const onSubmit = async (formData) => {
     // if patient not exists add patient and ambulvisit
+
     if (!patientExists) {
       const res = await patientsStore.addPatient(formData);
       if (res.id) {
@@ -29,6 +30,7 @@ const PatientForm = () => {
           doctorId: formData.doctorId,
           patientId: res.id,
           createdAt: res.createdAt,
+          status: formData.status,
         });
       }
       //if patient exists add only ambul visit
@@ -37,6 +39,7 @@ const PatientForm = () => {
         doctorId: formData.doctorId,
         patientId: patientsStore.patientInfo?.id,
         createdAt: patientsStore.patientInfo?.createdAt,
+        status: formData.status,
       });
     }
     reset();
@@ -85,7 +88,11 @@ const PatientForm = () => {
           <PatientInfo register={register} errors={errors} watch={watch} />
         </div>
         <div className="flex flex-col gap-2 w-1/2">
-          <PatientStatus register={register} errors={errors} />
+          <PatientStatus
+            register={register}
+            errors={errors}
+            setValue={setValue}
+          />
         </div>
       </div>
     </form>

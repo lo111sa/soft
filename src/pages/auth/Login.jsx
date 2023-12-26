@@ -27,7 +27,7 @@ const Login = () => {
     >
       <form className="w-full md:w-[420px] md:h-[330px]  flex flex-col justify-center items-center gap-y-5 shadow-xl p-5 mx-3 bg-white rounded-xl">
         <h1 className="text-2xl">ავტორიზაცია</h1>
-        <div className="w-full md:w-3/4 flex flex-col gap-y-7">
+        <div className="w-full md:w-3/4 flex flex-col gap-y-5">
           <Input
             value={username}
             placeholder="მომხმარებლის სახელი"
@@ -47,7 +47,10 @@ const Login = () => {
           />
         </div>
         <span className="text-sm text-center text-red-500">{}</span>
-        <button variant="contained" type="submit" className="w-1/2 mt-3">
+        <button
+          type="submit"
+          className="text-white px-8 py-2 rounded-md bg-gradient-to-b from-[#007BB3] via-[#2d9acc] to-[#007BB3]"
+        >
           შესვლა
         </button>
       </form>

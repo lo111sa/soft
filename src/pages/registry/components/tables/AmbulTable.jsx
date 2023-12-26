@@ -10,7 +10,7 @@ const AmbulTable = () => {
   const modal = useModalStore();
 
   const tableHeader = (
-    <tr className="text-[15px] sticky top-[-0.2px] bg-gray-100 z-10 border border-gray-300">
+    <tr className="text-[15px] sticky top-[-0.2px]  z-10 border border-gray-300 bg-gradient-to-b from-[#e6e6e8] via-[#FFFF] to-[#e6e6e8]">
       <th scope="col" className="px-6 py-3 border">
         N
       </th>

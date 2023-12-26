@@ -16,7 +16,7 @@ const Header = () => {
 
         <button
           onClick={() => auth.logout()}
-          className="flex items-center gap-2 bg-[#2C4C9C] text-white px-5 py-3 rounded-md"
+          className="flex items-center gap-2 text-white px-5 py-3 rounded-md bg-gradient-to-b from-[#007BB3] via-[#2d9acc] to-[#007BB3]"
         >
           <ExitToAppIcon />
           გასვლა

@@ -15,7 +15,7 @@ export const usePatientsStore = create((set) => ({
 
   //fetch Patient info
   searchPatients: async (pn) => {
-    if (pn !== "") {
+    if (pn) {
       set({ patients: [], isLoading: true });
       try {
         const { data } = await axios.get(`/patients?pn=${pn}`);
