@@ -36,12 +36,15 @@ const AmbulSearchPanel = () => {
   }, [pn, startDate, endDate]);
 
   return (
-    <div className="p-2">
+    <div className="flex flex-col gap-4 p-4">
       {/* Search input */}
       <div className="relative">
-        <p className="text-center text-xl pt-3 pb-2 font-medium">
-          მოძებნე პაციენტი
-        </p>
+        <div className="flex items-center gap-4">
+          <img src="/img/search.png" alt="calendar" />
+          <p className="text-center text-lg pt-3 pb-2 font-medium">
+            მოძებნეთ პაციენტი
+          </p>
+        </div>
         <Input
           placeholder="პირადი ნომერი"
           value={pn}
@@ -57,9 +60,12 @@ const AmbulSearchPanel = () => {
 
       {/* Date inputs */}
       <div>
-        <p className="text-center text-xl pt-3 pb-2 font-medium">
-          აირჩიეთ პერიოდი
-        </p>
+        <div className="flex items-center gap-4">
+          <img src="/img/calendar.png" alt="calendar" />
+          <p className="text-center text-lg pt-3 pb-2 font-medium">
+            აირჩიეთ პერიოდი
+          </p>
+        </div>
         <div className="flex gap-1 max-w-[300px]">
           <CustomDatePicker
             selected={startDate}

@@ -9,6 +9,8 @@ const Registry = lazy(() => import("./pages/registry/Registry"));
 const Login = lazy(() => import("./pages/auth/Login"));
 
 import { useAuthStore } from "./store/authStore";
+import Loader from "./components/loader/Loader";
+import Doctor from "./pages/doctor/Doctor";
 
 function App() {
   const auth = useAuthStore();
@@ -17,23 +19,26 @@ function App() {
     auth.checkAuth();
   }, []);
 
-  const authRoute = createBrowserRouter([
+  const registryRoute = createBrowserRouter([
     {
       path: "/",
-      element: <Login />,
+      element: auth.isAuth ? <Registry /> : <Login />,
     },
   ]);
 
-  const authedRoute = createBrowserRouter([
+  const doctorRoute = createBrowserRouter([
     {
       path: "/",
-      element: <Registry />,
+      element: auth.isAuth ? <Doctor /> : <Login />,
     },
   ]);
+
   return (
     <>
       {auth?.isAuth ? <Header /> : null}
-      <RouterProvider router={auth?.isAuth ? authedRoute : authRoute} />
+      <RouterProvider
+        router={auth.user?.position === "ექიმი" ? doctorRoute : registryRoute}
+      />
       <ToastContainer position="top-center" autoClose={1500} />
       <ModalComponent />
     </>

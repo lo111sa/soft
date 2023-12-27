@@ -51,42 +51,47 @@ const PatientVisitInfo = ({ info }) => {
       {/* TABLE */}
       <div className="max-h-[calc(100vh-220px)] overflow-auto">
         {" "}
-        <table className="w-full text-sm text-left rtl:text-right text-gray-900 h-full cursor-pointer ">
-          <thead className="text-xs text-gray-700 bg-gray-50 sticky top-0 z-10">
-            {tableHeader}
-          </thead>
-          <tbody>
-            {visits.singlePatientInfo?.length
-              ? visits.singlePatientInfo.map((item, index) => {
-                  return (
-                    <tr key={item.id} className="hover:bg-gray-100 ">
-                      <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
-                        {index + 1}
-                      </td>
-                      <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
-                        {formatDate(item.visitTime)}
-                      </td>
-                      <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
-                        {item.doctorName}
-                      </td>
-                      <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
-                        {""}
-                      </td>
-                      <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 "></td>
-                      <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 "></td>
-                      <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
-                        {item.status ? (
-                          <p className="text-green-500">შესრულებული</p>
-                        ) : (
-                          <p className="text-red-500">შეუსრულებელი </p>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })
-              : null}
-          </tbody>
-        </table>
+        {visits.isLoading ? (
+          <Loader />
+        ) : (
+          <table className="w-full text-sm text-left rtl:text-right text-gray-900 h-full cursor-pointer ">
+            <thead className="text-xs text-gray-700 bg-gray-50 sticky top-0 z-10">
+              {tableHeader}
+            </thead>
+
+            <tbody>
+              {visits.singlePatientInfo?.length
+                ? visits.singlePatientInfo.map((item, index) => {
+                    return (
+                      <tr key={item.id} className="hover:bg-gray-100 ">
+                        <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
+                          {index + 1}
+                        </td>
+                        <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
+                          {formatDate(item.visitTime)}
+                        </td>
+                        <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
+                          {item.doctorName}
+                        </td>
+                        <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
+                          {""}
+                        </td>
+                        <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 "></td>
+                        <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 "></td>
+                        <td className="px-6 py-2  border break-all whitespace-nowrap sticky left-0 ">
+                          {item.status ? (
+                            <p className="text-green-500">შესრულებული</p>
+                          ) : (
+                            <p className="text-red-500">შეუსრულებელი </p>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })
+                : null}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

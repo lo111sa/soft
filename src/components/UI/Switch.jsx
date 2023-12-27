@@ -17,18 +17,18 @@ const Switch = ({ onToggle }) => {
   return (
     <div
       className={`relative h-8 w-[193px] ${
-        toggle ? "bg-[#f8483e]" : "bg-[#1a8377]"
+        !toggle ? "bg-[#f8483e]" : "bg-[#1a8377]"
       } rounded-full p-1 cursor-pointer`}
       onClick={handleToggle}
     >
       <p className="absolute mx-8 text-center">
-        {toggle ? "შეუსრულებელი" : "შესრულებული"}
+        {!toggle ? "შეუსრულებელი" : "შესრულებული"}
       </p>
       {/* Switch */}
       <div
         className={
           "bg-white h-6 w-6 rounded-full shadow-md transform duration-300 ease-in-out" +
-          (toggle ? null : toggleClass)
+          (!toggle ? null : toggleClass)
         }
       ></div>
     </div>

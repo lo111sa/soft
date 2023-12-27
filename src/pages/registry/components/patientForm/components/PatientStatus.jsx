@@ -32,7 +32,7 @@ const PatientStatus = ({ register, errors, setValue }) => {
   return (
     <div className="flex flex-col gap-2 w-full px-2">
       <div className="flex justify-end items-center gap-3">
-        <Switch onToggle={(value) => setValue("status", !value)} />
+        <Switch onToggle={(value) => setValue("status", value)} />
         <button
           type="submit"
           className="border hover:border-yellow-600 px-3 py-1 rounded"

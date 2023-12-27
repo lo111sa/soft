@@ -5,7 +5,7 @@ import "./index.css";
 import Loader from "./components/loader/Loader.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Suspense fallback={<Loader />}>
+  <Suspense>
     <App />
   </Suspense>
 );

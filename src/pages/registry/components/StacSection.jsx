@@ -11,7 +11,7 @@ const StacSection = () => {
         <AmbulSearchPanel />
       </div>
       <div className="flex flex-col gap-3 items-center  h-full  w-full overflow-hidden">
-        <div className="flex items-center justify-between  w-full text-white rounded-md px-3 py-2 bg-gradient-to-b from-[#007BB3] via-[#2d9acc] to-[#007BB3]">
+        <div className="flex items-center justify-between  w-full text-white rounded-md px-3 py-2 bg-gradient-to-b from-[#2fafeb] to-[#007BB3]">
           <div className="flex items-center justify-center gap-2">
             <img src="/img/amb.png" alt="" />
             <p>დღის სტაციონარი ისტორიები</p>
