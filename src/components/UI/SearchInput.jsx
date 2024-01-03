@@ -49,38 +49,28 @@ const SearchInput = ({
     <div className="relative w-full">
       {label && <label className="block mb-1">{label}</label>}
       <div className="relative flex items-center w-full">
-        {register ? (
-          <div className="relative w-full">
-            <div className="absolute text-gray-700 right-1 top-2">
-              <SearchIcon />
-            </div>
-            <input
-              type={type}
-              value={value}
-              onChange={onChange}
-              placeholder={placeHolder}
-              readOnly={readOnly}
-              name={name}
-              {...register(name, validation)}
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ${
-                errors &&
-                errors[name] &&
-                "border-2 border-red-400 border-spacing-7"
-              }  focus:outline-none  focus:shadow-outline`}
-            />
-            {errors && errors[name] && (
-              <p className="text-red-400 text-sm">{errors[name].message}</p>
-            )}
+        <div className="relative w-full">
+          <div className="absolute text-gray-700 right-1 top-2">
+            <SearchIcon />
           </div>
-        ) : (
           <input
             type={type}
             value={value}
             onChange={onChange}
             placeholder={placeHolder}
-            className=" shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none  focus:shadow-outline"
+            readOnly={readOnly}
+            name={name}
+            {...(register ? register(name, validation) : {})}
+            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ${
+              errors &&
+              errors[name] &&
+              "border-2 border-red-400 border-spacing-7"
+            }  focus:outline-none  focus:shadow-outline`}
           />
-        )}
+          {errors && errors[name] && (
+            <p className="text-red-400 text-sm">{errors[name].message}</p>
+          )}
+        </div>
       </div>
 
       {open && data ? (

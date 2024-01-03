@@ -44,18 +44,18 @@ const PatientStatus = ({ register, errors, setValue }) => {
       <div className="flex gap-2">
         <div className="flex gap-2 pt-1 w-full ">
           <div className="flex flex-col w-1/2">
-            <Select1
+            <Select
               label="ჯგუფი"
-              /* defaultText="აირჩიეთ ჯგუფი" */
+              defaultText="აირჩიეთ ჯგუფი"
               options={groups}
-              onChange={async (value) => {
-                await doctorsStore.fetchDoctors(value);
+              onChange={async (e) => {
+                await doctorsStore.fetchDoctors(e.target.value);
               }}
             />
           </div>
           <div className="flex flex-col w-1/2 ">
-            <span>ექიმი *</span>
             <Select
+              label="ექიმი *"
               defaultText="აირჩიეთ ექიმი"
               options={doctors}
               name="doctorId"
@@ -72,8 +72,8 @@ const PatientStatus = ({ register, errors, setValue }) => {
           <PaymentOutlinedIcon /> ანაზღაურება
         </p>
         <div className="flex flex-col ">
-          <span>სადაზღვევო კომპანია</span>
           <Select
+            label="სადაზღვევო კომპანია"
             defaultText="აირჩიეთ კომპანია"
             options={[
               { value: "1", label: "მამრობითი" },

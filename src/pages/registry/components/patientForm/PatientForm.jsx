@@ -25,7 +25,7 @@ const PatientForm = () => {
   const onSubmit = async (formData) => {
     // if patient not exists add patient and ambulvisit
 
-    if (!patientExists) {
+    /*  if (!patientExists) {
       const res = await patientsStore.addPatient(formData);
       if (res.id) {
         await ambulStore.addVisit({
@@ -45,7 +45,8 @@ const PatientForm = () => {
       });
     }
     reset();
-    patientsStore.clearPatientInfo();
+    patientsStore.clearPatientInfo(); */
+    console.log(formData);
   };
 
   useEffect(() => {

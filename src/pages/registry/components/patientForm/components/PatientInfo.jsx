@@ -173,7 +173,7 @@ const PatientInfo = ({ register, errors, watch }) => {
                 register={register}
               />
             ) : (
-              <Select
+              <Select1
                 label="ქალაქი"
                 defaultText="აირჩიეთ ქალაქი"
                 options={citieList}
@@ -181,13 +181,6 @@ const PatientInfo = ({ register, errors, watch }) => {
                 register={register}
               />
             )}
-            <Select1
-              label="ქალაქი"
-              options={citieList}
-              onChange={handleSelectChange}
-              value={selectedValue}
-              // other props
-            />
           </div>
         </div>
       </div>

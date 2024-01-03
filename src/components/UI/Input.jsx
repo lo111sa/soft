@@ -19,28 +19,31 @@ const Input = ({
     <div className="mb-1">
       {label && <label className="block  mb-1">{label}</label>}
 
-      {register ? (
-        <div>
-          <input
-            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ${
-              errors &&
-              errors[name] &&
-              "border-2 border-red-400 border-spacing-7"
-            }  focus:outline-none  focus:shadow-outline`}
-            type={type}
-            placeholder={placeholder}
-            autoFocus={autoFocus}
-            onChange={onChange}
-            value={value}
-            readOnly={readOnly}
-            name={name}
-            {...register(name, validation)}
-          />
-          {errors && errors[name] && (
-            <p className="text-red-400 text-sm">{errors[name].message}</p>
-          )}
-        </div>
-      ) : (
+      <div>
+        <input
+          className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ${
+            errors && errors[name] && "border-2 border-red-400 border-spacing-7"
+          }  focus:outline-none  focus:shadow-outline`}
+          type={type}
+          placeholder={placeholder}
+          autoFocus={autoFocus}
+          onChange={onChange}
+          value={value}
+          readOnly={readOnly}
+          name={name}
+          {...(register ? register(name, validation) : {})}
+        />
+        {errors && errors[name] && (
+          <p className="text-red-400 text-sm">{errors[name].message}</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Input;
+
+/* (
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:outline-none  focus:shadow-outline"
           type={type}
@@ -51,9 +54,4 @@ const Input = ({
           readOnly={readOnly}
           name={name}
         />
-      )}
-    </div>
-  );
-};
-
-export default Input;
+      ) */
