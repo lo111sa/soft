@@ -14,11 +14,7 @@ const Select = ({
 }) => {
   return (
     <div className="mb-1">
-      {label && (
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          {label}
-        </label>
-      )}
+      {label && <label className="block  mb-1">{label}</label>}
       <div className="relative">
         {register ? (
           <div className="relative">

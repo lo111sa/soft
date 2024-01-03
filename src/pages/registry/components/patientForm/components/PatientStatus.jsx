@@ -4,6 +4,7 @@ import { useDoctorsStore } from "../../../../../store/doctorsStore";
 import Select from "../../../../../components/UI/Select";
 import Input from "../../../../../components/UI/Input";
 import Switch from "../../../../../components/UI/Switch";
+import Select1 from "../../../../../components/UI/Select1";
 
 const PatientStatus = ({ register, errors, setValue }) => {
   const doctorsStore = useDoctorsStore();
@@ -43,12 +44,12 @@ const PatientStatus = ({ register, errors, setValue }) => {
       <div className="flex gap-2">
         <div className="flex gap-2 pt-1 w-full ">
           <div className="flex flex-col w-1/2">
-            <span>ჯგუფი</span>
-            <Select
-              defaultText="აირჩიეთ ჯგუფი"
+            <Select1
+              label="ჯგუფი"
+              /* defaultText="აირჩიეთ ჯგუფი" */
               options={groups}
-              onChange={async (e) => {
-                await doctorsStore.fetchDoctors(e.target.value);
+              onChange={async (value) => {
+                await doctorsStore.fetchDoctors(value);
               }}
             />
           </div>

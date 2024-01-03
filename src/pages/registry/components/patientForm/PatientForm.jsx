@@ -6,8 +6,10 @@ import { useAmbulRecordsStore } from "../../../../store/ambulRecords";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { formatDate } from "../../../../utils/functions";
+import { useAuthStore } from "../../../../store/authStore";
 
 const PatientForm = () => {
+  const authStore = useAuthStore();
   const patientsStore = usePatientsStore();
   const ambulStore = useAmbulRecordsStore();
   const patientExists = patientsStore.patientInfo?.name;
@@ -18,7 +20,7 @@ const PatientForm = () => {
     setValue,
     reset,
     formState: { errors },
-  } = useForm({ defaultValues: { createdBy: 1 } });
+  } = useForm({ defaultValues: { createdBy: authStore.user.id } });
 
   const onSubmit = async (formData) => {
     // if patient not exists add patient and ambulvisit

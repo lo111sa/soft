@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { DatePicker } from "antd";
 import Input from "../../../../../components/UI/Input";
@@ -7,10 +7,31 @@ import Select from "../../../../../components/UI/Select";
 import { usePatientsStore } from "../../../../../store/patientsStore";
 import CustomDatePicker from "../../../../../components/UI/CustomDatePicker";
 import { formatDate } from "../../../../../utils/functions";
+import { cities } from "../../../../../cities.json";
+import Select1 from "../../../../../components/UI/Select1";
 
 const PatientInfo = ({ register, errors, watch }) => {
   const patientsStore = usePatientsStore();
   const patientExists = patientsStore.patientInfo?.name;
+  const [citieList, setCitieList] = useState([]);
+
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleSelectChange = (value) => {
+    // Handle the selected value here
+    console.log(value);
+    setSelectedValue(value);
+  };
+
+  useEffect(() => {
+    setCitieList([]);
+    cities.forEach((item) => {
+      setCitieList((prev) => [
+        ...prev,
+        { value: item.name_ka, label: item.name_ka },
+      ]);
+    });
+  }, []);
   return (
     <div className="flex flex-col gap-2 w-full ">
       <div className="flex flex-col gap-2 w-full px-2">
@@ -44,6 +65,7 @@ const PatientInfo = ({ register, errors, watch }) => {
             errors={!patientExists && errors}
           />
         </div>
+
         <Input
           label="პაციენტის სახელი, გვარი *"
           placeholder="შეიყვანეთ სახელი და გვარი"
@@ -132,7 +154,7 @@ const PatientInfo = ({ register, errors, watch }) => {
         </div>
         <div className="flex  gap-2 w-full ">
           {/*ADDRESS */}
-          <div className="flex flex-col w-2/3">
+          <div className="flex flex-col w-3/6">
             <Input
               label="მისამართი"
               placeholder="შეიყვანეთ მისამართი"
@@ -142,13 +164,29 @@ const PatientInfo = ({ register, errors, watch }) => {
             />
           </div>
           {/* CITY */}
-          <div className="flex flex-col w-1/3">
-            <Input
+          <div className="flex flex-col w-3/6">
+            {patientExists ? (
+              <Input
+                label="ქალაქი"
+                readOnly={patientExists}
+                name="city"
+                register={register}
+              />
+            ) : (
+              <Select
+                label="ქალაქი"
+                defaultText="აირჩიეთ ქალაქი"
+                options={citieList}
+                name="city"
+                register={register}
+              />
+            )}
+            <Select1
               label="ქალაქი"
-              placeholder="-"
-              readOnly={patientExists}
-              name="city"
-              register={register}
+              options={citieList}
+              onChange={handleSelectChange}
+              value={selectedValue}
+              // other props
             />
           </div>
         </div>
