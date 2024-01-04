@@ -24,7 +24,6 @@ const PatientForm = () => {
 
   const onSubmit = async (formData) => {
     // if patient not exists add patient and ambulvisit
-
     /*  if (!patientExists) {
       const res = await patientsStore.addPatient(formData);
       if (res.id) {

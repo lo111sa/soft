@@ -164,7 +164,7 @@ const PatientInfo = ({ register, errors, watch }) => {
             />
           </div>
           {/* CITY */}
-          <div className="flex flex-col w-3/6">
+          {/*  <div className="flex flex-col w-3/6">
             {patientExists ? (
               <Input
                 label="ქალაქი"
@@ -173,15 +173,22 @@ const PatientInfo = ({ register, errors, watch }) => {
                 register={register}
               />
             ) : (
-              <Select1
+              <Select
                 label="ქალაქი"
                 defaultText="აირჩიეთ ქალაქი"
                 options={citieList}
-                name="city"
+                  name="city" 
                 register={register}
               />
             )}
-          </div>
+          </div> */}
+          <Select1
+            label="ქალაქი"
+            defaultText="აირჩიეთ ქალაქი"
+            options={citieList}
+            name="city"
+            register={register}
+          />
         </div>
       </div>
     </div>

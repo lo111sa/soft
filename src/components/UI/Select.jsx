@@ -33,7 +33,11 @@ const Select = ({
             </option>
 
             {options?.map((option) => (
-              <option className="px-2" key={option.value} value={option.value}>
+              <option
+                className="px-2 text-gray-500"
+                key={option.value}
+                value={option.value}
+              >
                 {option.label}
               </option>
             ))}
