@@ -187,7 +187,7 @@ const PatientInfo = ({ register, errors, watch }) => {
             defaultText="აირჩიეთ ქალაქი"
             options={citieList}
             name="city"
-            register={register}
+            validation={{ required: "This field is required" }}
           />
         </div>
       </div>
