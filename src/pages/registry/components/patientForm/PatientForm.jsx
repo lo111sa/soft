@@ -19,6 +19,7 @@ const PatientForm = () => {
     watch,
     setValue,
     reset,
+    control,
     formState: { errors },
   } = useForm({ defaultValues: { createdBy: authStore.user.id } });
 
@@ -87,7 +88,12 @@ const PatientForm = () => {
     >
       <div className="flex gap-2 w-full">
         <div className="flex flex-col gap-2 w-1/2">
-          <PatientInfo register={register} errors={errors} watch={watch} />
+          <PatientInfo
+            register={register}
+            errors={errors}
+            watch={watch}
+            control={control}
+          />
         </div>
         <div className="flex flex-col gap-2 w-1/2">
           <PatientStatus

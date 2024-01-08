@@ -10,7 +10,7 @@ import { formatDate } from "../../../../../utils/functions";
 import { cities } from "../../../../../cities.json";
 import Select1 from "../../../../../components/UI/Select1";
 
-const PatientInfo = ({ register, errors, watch }) => {
+const PatientInfo = ({ register, errors, watch, control }) => {
   const patientsStore = usePatientsStore();
   const patientExists = patientsStore.patientInfo?.name;
   const [citieList, setCitieList] = useState([]);
@@ -188,6 +188,8 @@ const PatientInfo = ({ register, errors, watch }) => {
             options={citieList}
             name="city"
             validation={{ required: "This field is required" }}
+            control={control}
+            errors={errors}
           />
         </div>
       </div>
