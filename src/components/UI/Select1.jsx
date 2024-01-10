@@ -4,6 +4,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Select1 = ({ label, options, name, validation, errors, control }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div>
       <Controller
@@ -20,8 +22,6 @@ const Select1 = ({ label, options, name, validation, errors, control }) => {
           />
         )}
       />
-
-      {/* Other input fields or components can be added here */}
     </div>
   );
 };

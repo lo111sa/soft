@@ -44,3 +44,15 @@ span > img {
 .line-break {
   white-space: pre-wrap;
 }
+
+@layer base {
+  ::-webkit-scrollbar-thumb {
+    @apply bg-transparent shadow-sm;
+  }
+  ::-webkit-scrollbar {
+    @apply w-2 bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-gray-400 /*color trackbar*/;
+  }
+}
