@@ -52,6 +52,7 @@ const PatientForm = () => {
   useEffect(() => {
     patientsStore.clearPatientInfo();
   }, []);
+
   // Use useEffect to watch for changes in patientsStore.patientInfo
   useEffect(() => {
     setValue("pn", patientsStore.patientInfo.pn);

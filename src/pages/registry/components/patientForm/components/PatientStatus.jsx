@@ -5,6 +5,7 @@ import Select from "../../../../../components/UI/Select";
 import Input from "../../../../../components/UI/Input";
 import Switch from "../../../../../components/UI/Switch";
 import Select1 from "../../../../../components/UI/Select1";
+import CustomSelect from "../../../../../components/CustomSelect";
 
 const PatientStatus = ({ register, errors, setValue }) => {
   const doctorsStore = useDoctorsStore();
@@ -46,7 +47,7 @@ const PatientStatus = ({ register, errors, setValue }) => {
           <div className="flex flex-col w-1/2">
             <Select
               label="ჯგუფი"
-              defaultText="აირჩიეთ ჯგუფი"
+              placeholder="აირჩიეთ ჯგუფი"
               options={groups}
               onChange={async (e) => {
                 await doctorsStore.fetchDoctors(e.target.value);

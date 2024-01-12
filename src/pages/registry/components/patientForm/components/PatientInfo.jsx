@@ -9,6 +9,7 @@ import CustomDatePicker from "../../../../../components/UI/CustomDatePicker";
 import { formatDate } from "../../../../../utils/functions";
 import { cities } from "../../../../../cities.json";
 import Select1 from "../../../../../components/UI/Select1";
+import CustomSelect from "../../../../../components/CustomSelect";
 
 const PatientInfo = ({ register, errors, watch, control }) => {
   const patientsStore = usePatientsStore();
@@ -85,14 +86,16 @@ const PatientInfo = ({ register, errors, watch, control }) => {
           {patientExists ? (
             <Input readOnly={patientExists} name="gender" register={register} />
           ) : (
-            <Select
-              defaultText="აირჩიეთ სქესი"
+            <CustomSelect
+              placeholder="აირჩიეთ სქესი"
               options={[
                 { value: "1", label: "მამრობითი" },
                 { value: "2", label: "მდედრობითი" },
               ]}
               name="gender"
-              register={register}
+              control={control}
+              errors={errors}
+              validation={{ required: "აუცილებელი ველი!" }}
             />
           )}
         </div>
@@ -154,7 +157,7 @@ const PatientInfo = ({ register, errors, watch, control }) => {
         </div>
         <div className="flex  gap-2 w-full ">
           {/*ADDRESS */}
-          <div className="flex flex-col w-3/6">
+          <div className="flex flex-col w-7/12">
             <Input
               label="მისამართი"
               placeholder="შეიყვანეთ მისამართი"
@@ -164,7 +167,7 @@ const PatientInfo = ({ register, errors, watch, control }) => {
             />
           </div>
           {/* CITY */}
-          {/*  <div className="flex flex-col w-3/6">
+          <div className="flex flex-col w-3/6">
             {patientExists ? (
               <Input
                 label="ქალაქი"
@@ -173,24 +176,17 @@ const PatientInfo = ({ register, errors, watch, control }) => {
                 register={register}
               />
             ) : (
-              <Select
+              <CustomSelect
                 label="ქალაქი"
-                defaultText="აირჩიეთ ქალაქი"
+                placeholder="აირჩიეთ"
                 options={citieList}
-                  name="city" 
-                register={register}
+                name="city"
+                control={control}
+                errors={errors}
+                validation={{ required: "აუცილებელი ველი!" }}
               />
             )}
-          </div> */}
-          <Select1
-            label="ქალაქი"
-            defaultText="აირჩიეთ ქალაქი"
-            options={citieList}
-            name="city"
-            validation={{ required: "This field is required" }}
-            control={control}
-            errors={errors}
-          />
+          </div>
         </div>
       </div>
     </div>
