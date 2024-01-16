@@ -2,8 +2,8 @@ import axios from "axios";
 
 //https://kind-lime-puppy-slip.cyclic.app/api
 const instance = axios.create({
-  //baseURL: "http://localhost:8000/api",
-  baseURL: "https://api.losa.ge/api",
+  baseURL: "http://localhost:8000/api",
+  //baseURL: "https://api.losa.ge/api",
   withCredentials: true,
 });
 
