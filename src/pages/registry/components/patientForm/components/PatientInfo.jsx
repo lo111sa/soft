@@ -10,6 +10,7 @@ import { formatDate } from "../../../../../utils/functions";
 import { cities } from "../../../../../cities.json";
 import Select1 from "../../../../../components/UI/Select1";
 import CustomSelect from "../../../../../components/CustomSelect";
+import { useForm, Controller } from "react-hook-form";
 
 const PatientInfo = ({ register, errors, watch, control }) => {
   const patientsStore = usePatientsStore();
@@ -93,9 +94,9 @@ const PatientInfo = ({ register, errors, watch, control }) => {
                 { value: "2", label: "მდედრობითი" },
               ]}
               name="gender"
+              rules={{ required: "აუცილებელი ველი!" }}
               control={control}
               errors={errors}
-              validation={{ required: "აუცილებელი ველი!" }}
             />
           )}
         </div>
@@ -179,11 +180,15 @@ const PatientInfo = ({ register, errors, watch, control }) => {
               <CustomSelect
                 label="ქალაქი"
                 placeholder="აირჩიეთ"
-                options={citieList}
                 name="city"
                 control={control}
+                options={citieList}
+                /* handleChange={(e) => console.log(e.value)} */
+                rules={{
+                  required: "აუცილებელი ველი!",
+                }}
                 errors={errors}
-                validation={{ required: "აუცილებელი ველი!" }}
+                /*   validation={{ required: "აუცილებელი ველი!" }} */
               />
             )}
           </div>

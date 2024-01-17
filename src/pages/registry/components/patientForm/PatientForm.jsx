@@ -59,7 +59,11 @@ const PatientForm = () => {
     setValue("name", patientsStore.patientInfo.name);
     setValue(
       "gender",
-      patientsStore.patientInfo.gender === 1 ? "მამრობითი" : "მდედრობითი"
+      patientsStore.patientInfo.gender === 1
+        ? "მამრობითი"
+        : patientsStore.patientInfo.gender === 2
+        ? "მდედრობითი"
+        : null
     );
     setValue(
       "birthDate",

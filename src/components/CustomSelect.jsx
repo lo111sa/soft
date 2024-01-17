@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import { useForm, Controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 const CustomSelect = ({
   label,
-  name,
   placeholder,
-  options,
-  validation,
-  onChange,
+  name,
   control,
+  options,
+  onChange,
+  handleChange,
   errors,
+  rules,
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -34,32 +35,58 @@ const CustomSelect = ({
 
       {control ? (
         <Controller
-          name={name}
           control={control}
-          rules={validation}
-          render={({ field }) => (
+          name={name}
+          rules={rules}
+          render={({ field, field: { onChange, value } }) => (
             <Select
               {...field}
               styles={styles}
-              options={options}
-              isSearchable
               placeholder={placeholder}
+              options={options}
+              value={selectedOption}
+              onChange={(val) => {
+                setSelectedOption(val);
+                onChange(val.value);
+                handleChange && handleChange(val);
+              }}
             />
           )}
         />
       ) : (
         <Select
           styles={styles}
-          options={options}
-          isSearchable
           placeholder={placeholder}
-          onChange={onChange}
+          options={options}
+          value={selectedOption}
+          onChange={(val) => {
+            setSelectedOption(val);
+            handleChange && handleChange(val);
+          }}
         />
       )}
-      {errors && errors[name] && (
+
+      {errors[name] && (
         <p className="text-red-400 text-sm">{errors[name].message}</p>
       )}
     </div>
   );
 };
 export default CustomSelect;
+
+{
+  /* <Controller
+name={name}
+control={control}
+rules={validation}
+render={({ field }) => (
+  <Select
+    {...field}
+    styles={styles}
+    options={options}
+    isSearchable
+    placeholder={placeholder}
+  />
+)}
+/> */
+}
