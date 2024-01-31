@@ -188,7 +188,6 @@ const PatientInfo = ({ register, errors, watch, control }) => {
                   required: "აუცილებელი ველი!",
                 }}
                 errors={errors}
-                /*   validation={{ required: "აუცილებელი ველი!" }} */
               />
             )}
           </div>

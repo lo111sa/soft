@@ -30,7 +30,7 @@ const CustomSelect = ({
   };
 
   return (
-    <div className="mb-1">
+    <div className="">
       {label && <label className="block  mb-1">{label}</label>}
 
       {control ? (
@@ -59,16 +59,16 @@ const CustomSelect = ({
           placeholder={placeholder}
           options={options}
           value={selectedOption}
-          onChange={(val) => {
-            setSelectedOption(val);
-            handleChange && handleChange(val);
+          onChange={(e) => {
+            setSelectedOption(e);
+            handleChange && handleChange(e);
           }}
         />
       )}
 
-      {errors[name] && (
-        <p className="text-red-400 text-sm">{errors[name].message}</p>
-      )}
+      {errors ? (
+        <p className="text-red-400 text-sm">{errors[name]?.message}</p>
+      ) : null}
     </div>
   );
 };

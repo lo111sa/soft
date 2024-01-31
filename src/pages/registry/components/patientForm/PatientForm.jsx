@@ -105,6 +105,7 @@ const PatientForm = () => {
             register={register}
             errors={errors}
             setValue={setValue}
+            control={control}
           />
         </div>
       </div>

@@ -7,7 +7,7 @@ import Switch from "../../../../../components/UI/Switch";
 import Select1 from "../../../../../components/UI/Select1";
 import CustomSelect from "../../../../../components/CustomSelect";
 
-const PatientStatus = ({ register, errors, setValue }) => {
+const PatientStatus = ({ register, control, errors, setValue }) => {
   const doctorsStore = useDoctorsStore();
 
   const [groups, setGroups] = useState([]);
@@ -43,25 +43,25 @@ const PatientStatus = ({ register, errors, setValue }) => {
         </button>
       </div>
       <div className="flex gap-2">
-        <div className="flex gap-2 pt-1 w-full ">
+        <div className="flex gap-2  w-full ">
           <div className="flex flex-col w-1/2">
-            <Select
+            <CustomSelect
               label="ჯგუფი"
               placeholder="აირჩიეთ ჯგუფი"
               options={groups}
-              onChange={async (e) => {
-                await doctorsStore.fetchDoctors(e.target.value);
+              handleChange={async (e) => {
+                await doctorsStore.fetchDoctors(e.value);
               }}
             />
           </div>
           <div className="flex flex-col w-1/2 ">
-            <Select
+            <CustomSelect
               label="ექიმი *"
-              defaultText="აირჩიეთ ექიმი"
+              placeholder="აირჩიეთ ექიმი"
               options={doctors}
               name="doctorId"
-              register={register}
-              validation={{ required: "აუცილებელი ველი!" }}
+              control={control}
+              rules={{ required: "აუცილებელი ველი!" }}
               errors={errors}
             />
           </div>
@@ -73,15 +73,15 @@ const PatientStatus = ({ register, errors, setValue }) => {
           <PaymentOutlinedIcon /> ანაზღაურება
         </p>
         <div className="flex flex-col ">
-          <Select
+          <CustomSelect
             label="სადაზღვევო კომპანია"
-            defaultText="აირჩიეთ კომპანია"
+            placeholder="აირჩიეთ კომპანია"
             options={[
               { value: "1", label: "მამრობითი" },
               { value: "2", label: "მდედრობითი" },
             ]}
             name="insuranceCompany"
-            register={register}
+            control={control}
           />
         </div>
 
