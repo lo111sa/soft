@@ -23,10 +23,12 @@ const Login = () => {
   return (
     <div
       onSubmit={handleSubmit}
-      className="h-screen flex items-center justify-center bg-slate-300"
+      className="h-screen flex items-center justify-center bg-gray-50"
     >
-      <form className="w-full md:w-[420px] md:h-[330px]  flex flex-col justify-center items-center gap-y-5 shadow-xl p-5 mx-3 bg-white rounded-xl">
-        <h1 className="text-2xl">ავტორიზაცია</h1>
+      <form className="w-full md:w-[420px] md:h-[330px]  flex flex-col justify-center items-center gap-y-5 shadow-xl p-3 mx-3 bg-white rounded-xl">
+        <h1 className="text-2xl text-center pb-3 w-full border-b">
+          ავტორიზაცია
+        </h1>
         <div className="w-full md:w-3/4 flex flex-col gap-y-5">
           <Input
             value={username}
@@ -39,17 +41,19 @@ const Login = () => {
 
           <Input
             value={password}
-            placeholder="შეიყვანეთ პაროლი"
+            placeholder="********"
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             label="პაროლი"
             className="bg-white w-100"
           />
         </div>
-        <span className="text-sm text-center text-red-500">{}</span>
+        <span className="text-sm text-center text-red-500">
+          {auth.error ? auth.error : null}
+        </span>
         <button
           type="submit"
-          className="text-white px-8 py-2 rounded-md bg-gradient-to-b from-[#007BB3] via-[#2d9acc] to-[#007BB3]"
+          className="text-white w-full md:w-3/4 font-bold px-8 py-2 rounded-lg bg-black"
         >
           შესვლა
         </button>

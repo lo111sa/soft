@@ -6,6 +6,7 @@ export const useAuthStore = create((set) => ({
   user: {},
   isAuth: false,
   isLoading: false,
+  error: null,
   /////////////////////////// AUTH ///////////////////////////
 
   //LOGIN
@@ -13,11 +14,12 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true });
     try {
       const { data } = await axios.post(`/auth/login`, obj);
-      set({ user: data?.result });
+      set({ user: data?.result, error: null });
       data?.status ? toast.success(data.message) : toast.error(data.message);
       set({ isAuth: true });
     } catch (err) {
-      toast.error(err.response.data);
+      // toast.error(err.response.data);
+      set({ error: err.response.data });
     } finally {
       set({ isLoading: false });
     }

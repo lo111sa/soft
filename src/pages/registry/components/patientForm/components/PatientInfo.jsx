@@ -11,6 +11,7 @@ import { cities } from "../../../../../cities.json";
 import Select1 from "../../../../../components/UI/Select1";
 import CustomSelect from "../../../../../components/CustomSelect";
 import { useForm, Controller } from "react-hook-form";
+import CustomSearchInput from "../../../../../components/UI/CustomSearchInput";
 
 const PatientInfo = ({ register, errors, watch, control }) => {
   const patientsStore = usePatientsStore();
