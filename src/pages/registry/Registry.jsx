@@ -8,7 +8,7 @@ const Registry = () => {
     <div className="flex flex-col my-2 gap-2 h-[calc(100vh-85px)]">
       {/*  <VisitsSection /> */}
       <AmbulSection />
-      <StacSection />
+      {/*   <StacSection /> */}
     </div>
   );
 };

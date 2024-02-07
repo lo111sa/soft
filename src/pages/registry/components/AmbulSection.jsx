@@ -7,7 +7,7 @@ import AmbulSearchPanel from "./AmbulSearchPanel";
 const AmbulSection = () => {
   const modal = useModalStore();
   return (
-    <div className="flex items-center  mx-2 h-1/2  gap-5">
+    <div className="flex items-center  mx-2 h-[calc(100vh-70px)]  gap-5">
       <div className=" min-w-[240px] h-full rounded-lg text-white bg-gradient-to-b from-[#007BB3] via-[#2d9acc] to-[#007BB3]">
         <AmbulSearchPanel />
       </div>
