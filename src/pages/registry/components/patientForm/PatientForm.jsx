@@ -21,7 +21,11 @@ const PatientForm = () => {
     reset,
     control,
     formState: { errors },
-  } = useForm({ defaultValues: { createdBy: authStore.user.id } });
+  } = useForm({
+    defaultValues: {
+      createdBy: authStore.user.id,
+    },
+  });
 
   const onSubmit = async (formData) => {
     // if patient not exists add patient and ambulvisit

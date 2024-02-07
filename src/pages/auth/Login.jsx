@@ -3,11 +3,12 @@ import { useAuthStore } from "../../store/authStore";
 
 import Input from "../../components/UI/Input";
 import Loader from "../../components/loader/Loader";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const Login = () => {
   const auth = useAuthStore();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("a.namchevadze");
+  const [password, setPassword] = useState("1234");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,14 +19,14 @@ const Login = () => {
     await auth.login(data);
   };
 
-  if (auth.isLoading) return <Loader />;
+  /*  if (auth.isLoading) return <Loader />; */
 
   return (
     <div
       onSubmit={handleSubmit}
       className="h-screen flex items-center justify-center bg-gray-50"
     >
-      <form className="w-full md:w-[420px] md:h-[330px]  flex flex-col justify-center items-center gap-y-5 shadow-xl p-3 mx-3 bg-white rounded-xl">
+      <form className="w-full md:w-[420px]   flex flex-col justify-center items-center gap-y-5 shadow-xl p-3 mx-3 bg-white rounded-xl">
         <h1 className="text-2xl text-center pb-3 w-full border-b">
           ავტორიზაცია
         </h1>
@@ -55,7 +56,19 @@ const Login = () => {
           type="submit"
           className="text-white w-full md:w-3/4 font-bold px-8 py-2 rounded-lg bg-black"
         >
-          შესვლა
+          {auth.isLoading ? (
+            <div className="flex items-center justify-center py-2">
+              {" "}
+              <PulseLoader
+                color={"white"}
+                size={10}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+          ) : (
+            <p>შესვლა</p>
+          )}
         </button>
       </form>
     </div>
