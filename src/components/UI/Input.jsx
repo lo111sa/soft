@@ -21,7 +21,7 @@ const Input = ({
 
       <div>
         <input
-          className={`border border-gray-200 appearance-none  rounded-lg w-full py-2 px-3 text-gray-700  leading-tight ${
+          className={`border border-gray-200 appearance-none  rounded-md w-full py-2 px-3 text-gray-700  leading-tight ${
             errors && errors[name] && "border-2 border-red-400 border-spacing-7"
           }  focus:outline-none  focus:shadow-outline`}
           type={type}
