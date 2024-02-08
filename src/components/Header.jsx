@@ -4,13 +4,13 @@ import { useAuthStore } from "../store/authStore";
 const Header = () => {
   const auth = useAuthStore();
   return (
-    <header className="flex justify-between items-center bg-[#F4F4F4] shadow-md px-2 py-2">
+    <header className="flex justify-between items-center bg-[#1d1d1d] shadow-md px-2 py-2">
       {/* Left side */}
-      <div>LOGO</div>
+      <div className="text-white">LOGO</div>
       {/* Right side */}
 
       <div className="flex items-center gap-4">
-        <button className="bg-[#E99344] text-white px-2 py-2 rounded-md">
+        <button className="border text-white px-2 py-2 rounded-md">
           {auth.user?.position + ": " + auth.user?.name}
         </button>
 

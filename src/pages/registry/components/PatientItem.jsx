@@ -3,7 +3,6 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { formatDate } from "../../../utils/functions";
 
 const PatientItem = ({ props }) => {
-  console.log(props);
   return (
     <div className=" flex flex-col shadow-md border hover:border-gray-400 rounded-lg p-2 bg-white cursor-pointer">
       {/* Top div */}
