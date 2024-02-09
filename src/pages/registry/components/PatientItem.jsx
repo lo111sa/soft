@@ -1,8 +1,11 @@
 import React from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { formatDate } from "../../../utils/functions";
+import { useModalStore } from "../../../store/modalStore";
+import PatientVisitInfo from "./PatientVisitInfo";
 
 const PatientItem = ({ props }) => {
+  const modal = useModalStore();
   return (
     <div className=" flex flex-col shadow-md border hover:border-gray-400 rounded-lg p-2 bg-white cursor-pointer">
       {/* Top div */}
@@ -23,7 +26,15 @@ const PatientItem = ({ props }) => {
             ></div>{" "}
             {props.status ? "გადახდილი" : "გადაუხდელი"}
           </span>
-          <button className="border-2 rounded px-3 py-1 text-gray-400 hover:border-black">
+          <button
+            onClick={() =>
+              modal.open(
+                <PatientVisitInfo info={props} />,
+                "პაციენტის ვიზიტების ისტორია"
+              )
+            }
+            className="border-2 rounded px-3 py-1 text-gray-400 hover:border-black"
+          >
             <KeyboardArrowRightIcon />
           </button>
         </div>
@@ -46,6 +57,28 @@ const PatientItem = ({ props }) => {
           </p>
         </div>
 
+        <div className="flex flex-col gap-2 border-r pe-6 py-2 text-sm">
+          <p className="text-gray-500">
+            მკურნალი ექიმი :{" "}
+            <span className="text-black font-bold">{props.doctorName}</span>
+          </p>
+          <p className="text-gray-500">
+            ოპერატორი :{" "}
+            <span className="text-black font-bold">ასმათი ონიანი</span>
+          </p>
+        </div>
+
+        {/*  */}
+        <div className="flex flex-col gap-2 border-r pe-6 py-2 text-sm">
+          <p className="text-gray-500">
+            მკურნალი ექიმი :{" "}
+            <span className="text-black font-bold">{props.doctorName}</span>
+          </p>
+          <p className="text-gray-500">
+            ოპერატორი :{" "}
+            <span className="text-black font-bold">ასმათი ონიანი</span>
+          </p>
+        </div>
         <div className="flex flex-col gap-2 border-r pe-6 py-2 text-sm">
           <p className="text-gray-500">
             მკურნალი ექიმი :{" "}

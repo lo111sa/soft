@@ -9,7 +9,7 @@ const Registry = () => {
   const visits = useAmbulRecordsStore();
 
   return (
-    <div className="flex   p-3 h-[calc(100vh-60px)] bg-gray-50">
+    <div className="flex p-3 h-[calc(100vh-65px)] bg-gray-50">
       {/* Sidebar */}
       <div className="min-w-[320px] pe-3">
         <div className="border h-full bg-white rounded-lg ">

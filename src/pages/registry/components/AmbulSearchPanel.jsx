@@ -4,6 +4,7 @@ import { useAmbulRecordsStore } from "../../../store/ambulRecords";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import CustomDatePicker from "../../../components/UI/CustomDatePicker";
+import CustomSelect from "../../../components/CustomSelect";
 
 const AmbulSearchPanel = () => {
   const visits = useAmbulRecordsStore();
@@ -66,12 +67,13 @@ const AmbulSearchPanel = () => {
             აირჩიეთ პერიოდი
           </p>
         </div>
-        <div className="flex gap-1 max-w-[300px]">
+
+        <div className="flex items-center gap-1 max-w-[300px]">
           <CustomDatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
-
+          -
           <CustomDatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
