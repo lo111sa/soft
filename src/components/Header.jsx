@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useAuthStore } from "../store/authStore";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 const Header = () => {
   const auth = useAuthStore();
@@ -25,7 +26,7 @@ const Header = () => {
             {auth.user?.name}
           </div>
 
-          <ExpandMoreIcon />
+          {!popup ? <ExpandMoreIcon /> : <ExpandLessIcon />}
 
           {/* Popup div */}
           {popup && (

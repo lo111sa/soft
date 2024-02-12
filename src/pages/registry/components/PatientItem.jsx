@@ -33,7 +33,7 @@ const PatientItem = ({ props }) => {
                 "პაციენტის ვიზიტების ისტორია"
               )
             }
-            className="border-2 rounded px-3 py-1 text-gray-400 hover:border-black"
+            className="border-2 rounded px-3 py-1 text-gray-400 hover:border-gray-400 transition-all duration-500"
           >
             <KeyboardArrowRightIcon />
           </button>
