@@ -22,9 +22,11 @@ const Registry = () => {
           ანკეტები
         </div>
 
-        {visits.amb?.length
-          ? visits.amb.map((item) => <PatientItem key={item.id} props={item} />)
-          : null}
+        {visits.amb?.length ? (
+          visits.amb.map((item) => <PatientItem key={item.id} props={item} />)
+        ) : (
+          <p className="text-center">ჩანაწერები არ არის</p>
+        )}
       </div>
     </div>
   );
