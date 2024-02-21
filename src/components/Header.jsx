@@ -32,7 +32,9 @@ const Header = () => {
           {popup && (
             <div className="absolute flex flex-col top-12 right-0 w-52 py-2 text-black bg-gray-50 border border-gray-300 shadow-lg rounded z-50">
               <button
-                onClick={() => auth.logout()}
+                onClick={() => {
+                  auth.logout();
+                }}
                 className="flex items-center gap-2 px-5 py-2 rounded-md "
               >
                 <ExitToAppIcon />

@@ -4,6 +4,7 @@ import AmbulSection from "./components/AmbulSection";
 import PatientItem from "./components/PatientItem";
 import { useAmbulRecordsStore } from "../../store/ambulRecords";
 import AmbulSearchPanel from "./components/AmbulSearchPanel";
+import { Link } from "react-router-dom";
 
 const Registry = () => {
   const visits = useAmbulRecordsStore();
@@ -18,8 +19,11 @@ const Registry = () => {
       </div>
       {/* Rightbar */}
       <div className="w-full flex flex-col gap-4 pe-2 overflow-y-auto">
-        <div className="w-full p-3 sticky top-0 rounded-lg bg-white border border-gray-300 shadow-md">
+        <div className="flex items-center justify-between w-full p-3 sticky top-0 rounded-lg bg-white border border-gray-300 shadow-md">
           ანკეტები
+          <Link to={"/register-patient"}>
+            <img src="/img/add-file.png" alt="" />
+          </Link>
         </div>
 
         {visits.amb?.length ? (

@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,6 +11,7 @@ const Login = lazy(() => import("./pages/auth/Login"));
 import { useAuthStore } from "./store/authStore";
 import Loader from "./components/loader/Loader";
 import Doctor from "./pages/doctor/Doctor";
+import RegisterPatient from "./pages/registerPatient/RegisterPatient";
 
 function App() {
   const auth = useAuthStore();
@@ -19,14 +20,19 @@ function App() {
     auth.checkAuth();
   }, []);
 
-  const registryRoute = createBrowserRouter([
+  const registryRoute = createHashRouter([
     {
       path: "/",
       element: auth.isAuth ? <Registry /> : <Login />,
     },
+
+    {
+      path: "/register-patient",
+      element: <RegisterPatient />,
+    },
   ]);
 
-  const doctorRoute = createBrowserRouter([
+  const doctorRoute = createHashRouter([
     {
       path: "/",
       element: auth.isAuth ? <Doctor /> : <Login />,

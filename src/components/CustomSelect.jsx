@@ -18,7 +18,7 @@ const CustomSelect = ({
   const styles = {
     control: (base, state) => ({
       ...base,
-      backgroundColor: "#f7fafc",
+      backgroundColor: "white",
       width: "100%",
     }),
     option: (base) => ({
