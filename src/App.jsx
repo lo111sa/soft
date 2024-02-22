@@ -11,7 +11,9 @@ const Login = lazy(() => import("./pages/auth/Login"));
 import { useAuthStore } from "./store/authStore";
 import Loader from "./components/loader/Loader";
 import Doctor from "./pages/doctor/Doctor";
-import RegisterPatient from "./pages/registerPatient/RegisterPatient";
+const RegisterPatient = lazy(() =>
+  import("./pages/registerPatient/RegisterPatient")
+);
 
 function App() {
   const auth = useAuthStore();
