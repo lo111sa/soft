@@ -6,7 +6,12 @@ export default {
     "./node_modules/react-tailwindcss-select/dist/index.esm.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "dark-purple": "#2C4C9C",
+        "light-white": "rgba(255,255,255,0.17)",
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography")],
   corePlugins: {

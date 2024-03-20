@@ -41,10 +41,7 @@ const AmbulSearchPanel = () => {
       {/* Search input */}
       <div className="relative">
         <div className="flex items-center gap-4">
-          <img src="/img/search.png" alt="calendar" />
-          <p className="text-center text-lg pt-3 pb-2 font-medium">
-            მოძებნეთ პაციენტი
-          </p>
+          <p className="pt-3 pb-2">მოძებნეთ პაციენტი</p>
         </div>
         <Input
           placeholder="პირადი ნომერი"
@@ -53,7 +50,7 @@ const AmbulSearchPanel = () => {
             setPn(e.target.value);
           }}
         />
-        <div className="absolute top-[55px] right-1 z-10 text-gray-600 cursor-pointer">
+        <div className="absolute top-[52px] right-1 z-10 text-gray-600 cursor-pointer">
           {" "}
           {pn ? <ClearIcon onClick={() => setPn("")} /> : <SearchIcon />}
         </div>
@@ -62,10 +59,7 @@ const AmbulSearchPanel = () => {
       {/* Date inputs */}
       <div>
         <div className="flex items-center gap-4">
-          <img src="/img/calendar.png" alt="calendar" />
-          <p className="text-center text-lg pt-3 pb-2 font-medium">
-            აირჩიეთ პერიოდი
-          </p>
+          <p className="pt-3 pb-2 ">აირჩიეთ პერიოდი</p>
         </div>
 
         <div className="flex items-center gap-1 max-w-[300px]">
