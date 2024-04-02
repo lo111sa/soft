@@ -1,6 +1,7 @@
 import React from "react";
 
-// Create Document Component
-const Test = () => <></>;
+const Test = () => {
+  return <div>Test</div>;
+};
 
 export default Test;
